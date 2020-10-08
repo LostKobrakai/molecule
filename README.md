@@ -1,5 +1,8 @@
 # Molecule
 
+[![Hex pm](https://img.shields.io/hexpm/v/molecule)](https://hex.pm/packages/molecule)
+[![License](https://img.shields.io/hexpm/l/molecule)](https://github.com/LostKobrakai/molecule/blob/master/LICENSE.md)
+
 <!-- MDOC !-->
 Rendering of components with named slots.
 
