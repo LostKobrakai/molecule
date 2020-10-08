@@ -61,6 +61,9 @@ defmodule Molecule do
       {:slot, _, [name, [do: block]]}, acc ->
         Map.put(acc, name, block)
 
+      {:slot, _, [name, fun]}, acc ->
+        Map.put(acc, name, fun)
+
       block, acc ->
         Map.update!(acc, :body, fn cur -> cur ++ [block] end)
     end)

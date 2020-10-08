@@ -1,0 +1,4 @@
+<div>
+  <header><%= @slots.header.(5) %></header>
+  <%= @slots.body %>
+</div>

@@ -1,0 +1,6 @@
+<%= component "component.html" do %>
+  <% slot :header, fn x -> %>
+    Header <%= x %>
+  <% end %>
+  Hi
+<% end %>
