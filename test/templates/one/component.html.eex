@@ -1,0 +1,5 @@
+<div>
+  <header><%= @slots.header %></header>
+  <%= @slots.body %>
+  <%= 1 + 1 %>
+</div>

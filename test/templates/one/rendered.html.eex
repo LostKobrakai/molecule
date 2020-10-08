@@ -1,0 +1,9 @@
+<%= component "component.html" do %>
+  <% slot :header do %>
+    Header <%= 1 + 1 %>
+  <% end %>
+  <% slot :footer do %>
+    Header <%= 1 + 1 %>
+  <% end %>
+  Test <%= 1 + 1 %>
+<% end %>
