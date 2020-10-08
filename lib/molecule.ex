@@ -1,7 +1,16 @@
 defmodule Molecule do
-  @moduledoc """
-  Documentation for `Molecule`.
-  """
+  @external_resource "README.md"
+  @moduledoc "README.md"
+             |> File.read!()
+             |> String.split("<!-- MDOC !-->")
+             |> Enum.fetch!(1)
+
+  @spec component(
+          view :: Macro.t(),
+          template :: Macro.t(),
+          assigns :: Macro.t(),
+          block :: Macro.t()
+        ) :: Macro.t()
   defmacro component(view, template, assigns, do: {:__block__, _, list})
            when is_list(list) and is_map(assigns) do
     quote do
@@ -16,6 +25,12 @@ defmodule Molecule do
       )
     end
   end
+
+  @spec component(
+          view_or_template :: Macro.t(),
+          template_or_assigns :: Macro.t(),
+          block :: Macro.t()
+        ) :: Macro.t()
 
   defmacro component(view, template, do: {:__block__, _, list})
            when is_list(list) and is_binary(template) do
@@ -42,6 +57,7 @@ defmodule Molecule do
     end
   end
 
+  @spec component(template :: Macro.t(), block :: Macro.t()) :: Macro.t()
   defmacro component(template, do: {:__block__, _, list})
            when is_list(list) and is_binary(template) do
     quote do

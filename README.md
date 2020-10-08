@@ -1,6 +1,45 @@
 # Molecule
 
-**TODO: Add description**
+<!-- MDOC !-->
+Rendering of components with named slots.
+
+`Molecule` allows rendering of components with named slots in phoenix or other eex based templating (needs `render/2`/`render/3` functions like phoenix views though).
+
+## Example
+
+```elixir
+<%= component Module, "template.ext", assigns fo %>
+  <% slot :name do %>
+    Contents for named slot
+  <% end %>
+  Body contents <%= dynamic_content %>
+<% end %>
+```
+
+This will essentially call (disregarding some whitespace).
+
+```elixir
+Module.render("template.ext", Map.put(assigns, :slots, %{
+  name: "Contents for named slot",
+  body: "Body contents"
+})
+```
+
+The called template can then do whatever it needs to do with those slots.
+
+## Slot Function
+
+Besides the `do/end` block format slots also support a function format:
+
+```
+<% slot :name, fn data -> %>
+  Contents for named slot
+<% end %>
+```
+
+Where the component template can pass data to the slot: `@slots.name.(data)`.
+
+<!-- MDOC !-->
 
 ## Installation
 
