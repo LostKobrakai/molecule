@@ -13,8 +13,13 @@ defmodule Molecule.MixProject do
       source_url: @github,
       name: "Molecule",
       package: package(),
+      description: description(),
       docs: docs()
     ]
+  end
+
+  defp description() do
+    "Rendering of components with named slots."
   end
 
   # Run "mix help compile.app" to learn about applications.
