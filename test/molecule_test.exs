@@ -4,7 +4,7 @@ defmodule MoleculeTest do
 
   defmodule OneView do
     use Phoenix.View, root: "test/templates"
-    import Molecule, only: [component: 2]
+    import Molecule
   end
 
   test "Works for Phoenix.HTML engine" do

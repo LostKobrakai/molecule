@@ -2,17 +2,53 @@ defmodule Molecule do
   @moduledoc """
   Documentation for `Molecule`.
   """
-  defmacro component(view, template, do: {:__block__, _, list}) when is_list(list) do
+  defmacro component(view, template, assigns, do: {:__block__, _, list})
+           when is_list(list) and is_map(assigns) do
     quote do
-      render(unquote(view), unquote(template), %{
-        slots: unquote(map_ast_for_blocks(map_blocks(list)))
-      })
+      render(
+        unquote(view),
+        unquote(template),
+        Map.put(
+          unquote(assigns),
+          :slots,
+          unquote(map_ast_for_blocks(map_blocks(list)))
+        )
+      )
     end
   end
 
-  defmacro component(template, do: {:__block__, _, list}) when is_list(list) do
+  defmacro component(view, template, do: {:__block__, _, list})
+           when is_list(list) and is_binary(template) do
     quote do
-      render(unquote(template), %{slots: unquote(map_ast_for_blocks(map_blocks(list)))})
+      render(
+        unquote(view),
+        unquote(template),
+        %{slots: unquote(map_ast_for_blocks(map_blocks(list)))}
+      )
+    end
+  end
+
+  defmacro component(template, assigns, do: {:__block__, _, list})
+           when is_list(list) and is_map(assigns) do
+    quote do
+      render(
+        unquote(template),
+        Map.put(
+          unquote(assigns),
+          :slots,
+          unquote(map_ast_for_blocks(map_blocks(list)))
+        )
+      )
+    end
+  end
+
+  defmacro component(template, do: {:__block__, _, list})
+           when is_list(list) and is_binary(template) do
+    quote do
+      render(
+        unquote(template),
+        %{slots: unquote(map_ast_for_blocks(map_blocks(list)))}
+      )
     end
   end
 
