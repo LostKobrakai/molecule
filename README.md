@@ -22,7 +22,7 @@ Rendering of components with named slots.
 This will essentially call (disregarding some whitespace).
 
 ```elixir
-Module.render("template.ext", Map.put(assigns, :slots, %{
+render(Module, "template.ext", Map.put(assigns, :slots, %{
   name: "Contents for named slot",
   body: "Body contents"
 })
