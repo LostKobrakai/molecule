@@ -24,7 +24,7 @@ This will essentially call (disregarding some whitespace).
 ```elixir
 render(Module, "template.ext", Map.put(assigns, :slots, %{
   name: "Contents for named slot",
-  body: "Body contents"
+  body: "Body contents …"
 })
 ```
 
