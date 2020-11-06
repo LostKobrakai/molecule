@@ -11,7 +11,7 @@ Rendering of components with named slots.
 ## Example
 
 ```elixir
-<%= component Module, "template.ext", assigns fo %>
+<%= component Module, "template.ext", assigns do %>
   <% slot :name do %>
     Contents for named slot
   <% end %>
